@@ -1,0 +1,556 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+          <style>
+            body { background-color: #ffffff; color: #000000; margin: 0; padding: 24px; font-family: system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+            ::-webkit-scrollbar { display: none; }
+          </style>
+        </head>
+        <body>
+          <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Syne:wght@800&display=swap');
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 127, 0.9), -0.05em -0.025em 0 rgba(0, 240, 255, 0.9), 0 .05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(0);
+    }
+    14% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 127, 0.9), -0.05em -0.025em 0 rgba(0, 240, 255, 0.9), 0 .05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(-2px, 2px);
+    }
+    15% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 127, 0.9), 0.025em 0.025em 0 rgba(0, 240, 255, 0.9), -0.05em -0.05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(2px, -2px);
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 127, 0.9), 0.025em 0.025em 0 rgba(0, 240, 255, 0.9), -0.05em -0.05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(0);
+    }
+    50% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 127, 0.9), 0.05em 0 0 rgba(0, 240, 255, 0.9), 0 -0.05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(-1px, 3px);
+    }
+    99% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 127, 0.9), 0.05em 0 0 rgba(0, 240, 255, 0.9), 0 -0.05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(-1px, -1px);
+    }
+    100% {
+      text-shadow: -0.025em 0 0 rgba(255, 0, 127, 0.9), -0.025em -0.025em 0 rgba(0, 240, 255, 0.9), -0.025em -0.05em 0 rgba(255, 242, 0, 0.9);
+      transform: translate(0);
+    }
+  }
+
+  @keyframes swing-1 {
+    0% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+    100% { transform: rotate(-8deg); }
+  }
+
+  @keyframes swing-2 {
+    0% { transform: rotate(6deg); }
+    50% { transform: rotate(-10deg); }
+    100% { transform: rotate(6deg); }
+  }
+
+  @keyframes swing-3 {
+    0% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  .glitch-text {
+    animation: glitch 0.8s linear infinite;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .swing-node-1 {
+    animation: swing-1 5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .swing-node-2 {
+    animation: swing-2 6.2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .swing-node-3 {
+    animation: swing-3 4.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .floating-container {
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .halftone-bg {
+    background-color: #0d041c;
+    background-image: 
+      radial-gradient(circle at center, rgba(255, 0, 127, 0.15) 1.5px, transparent 1.5px),
+      radial-gradient(circle at center, rgba(0, 240, 255, 0.12) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  .clip-skew-left {
+    clip-path: polygon(0 4%, 100% 0%, 96% 96%, 4% 100%);
+  }
+
+  .clip-skew-right {
+    clip-path: polygon(4% 0%, 100% 6%, 94% 100%, 0% 92%);
+  }
+
+  .clip-badge {
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+  }
+
+  .scanline-effect::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 10;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+  }
+</style>
+
+<div class="halftone-bg min-h-screen text-white font-sans overflow-x-hidden relative scanline-effect pb-32">
+  
+  <!-- Ambient glowing blobs -->
+  <div class="absolute top-20 left-10 w-96 h-96 bg-fuchsia-600 rounded-full blur-[150px] opacity-30 pointer-events-none"></div>
+  <div class="absolute top-1/2 right-10 w-[450px] h-[450px] bg-cyan-500 rounded-full blur-[180px] opacity-20 pointer-events-none"></div>
+  <div class="absolute bottom-10 left-1/3 w-[350px] h-[350px] bg-purple-800 rounded-full blur-[140px] opacity-40 pointer-events-none"></div>
+
+  <!-- Foreground Chaotic Grid Gridline overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,0,127,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+  <!-- TOP WEB-SWINGING NAVIGATION -->
+  <header class="relative z-50 max-w-7xl mx-auto px-4 pt-0 h-44 flex justify-between items-start">
+    <div class="bg-black border-4 border-cyan-400 p-4 mt-4 -rotate-2 shadow-[4px_4px_0px_0px_rgba(255,0,127,1)] max-w-xs">
+      <span class="font-mono text-xs text-pink-500 block tracking-widest">// TARGET ID</span>
+      <h1 class="text-xl font-black tracking-tighter text-cyan-400">PETER_PARKER//E-1610</h1>
+    </div>
+
+    <!-- Swinging web cables and buttons -->
+    <nav class="hidden md:flex gap-12 pr-12">
+      <!-- Nav Node 1 -->
+      <div class="swing-node-1 flex flex-col items-center">
+        <div class="w-[2px] h-16 bg-gradient-to-b from-transparent via-cyan-400 to-pink-500"></div>
+        <a href="#about" class="px-5 py-2 bg-pink-500 text-black font-black uppercase text-sm border-2 border-black tracking-tight hover:bg-cyan-400 hover:text-black transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,240,255,1)] hover:shadow-none block">
+          THE ANOMALY
+        </a>
+      </div>
+
+      <!-- Nav Node 2 -->
+      <div class="swing-node-2 flex flex-col items-center">
+        <div class="w-[2px] h-24 bg-gradient-to-b from-transparent via-pink-500 to-yellow-400"></div>
+        <a href="#portals" class="px-5 py-2 bg-yellow-400 text-black font-black uppercase text-sm border-2 border-black tracking-tight hover:bg-pink-500 hover:text-white transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(255,0,127,1)] hover:shadow-none block">
+          PORTALS
+        </a>
+      </div>
+
+      <!-- Nav Node 3 -->
+      <div class="swing-node-3 flex flex-col items-center">
+        <div class="w-[2px] h-12 bg-gradient-to-b from-transparent via-purple-600 to-cyan-400"></div>
+        <a href="#glitch-log" class="px-5 py-2 bg-cyan-400 text-black font-black uppercase text-sm border-2 border-black tracking-tight hover:bg-yellow-400 hover:text-black transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(255,0,127,1)] hover:shadow-none block">
+          GLITCH LOG
+        </a>
+      </div>
+
+      <!-- Nav Node 4 -->
+      <div class="swing-node-1 flex flex-col items-center">
+        <div class="w-[2px] h-20 bg-gradient-to-b from-transparent via-yellow-400 to-fuchsia-600"></div>
+        <a href="#signal" class="px-5 py-2 bg-fuchsia-600 text-white font-black uppercase text-sm border-2 border-black tracking-tight hover:bg-cyan-400 hover:text-black transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,240,255,1)] hover:shadow-none block">
+          SEND SIGNAL
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="max-w-7xl mx-auto px-4 pt-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left Column: Title Chaos -->
+      <div class="lg:col-span-8 flex flex-col justify-center relative">
+        <div class="absolute -top-16 -left-8 font-mono text-[120px] text-fuchsia-950 opacity-10 select-none font-black leading-none">
+          GLITCHED_
+        </div>
+
+        <div class="inline-block bg-yellow-400 text-black font-black px-4 py-1 text-sm tracking-widest uppercase self-start rotate-3 mb-6 shadow-md">
+          ⚠️ WARNING: DIMENSIONAL BREACH DETECTED ⚠️
+        </div>
+
+        <!-- Main glitched title -->
+        <h1 class="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none block relative z-10">
+          <span class="block text-white">WEAVING</span>
+          <span class="glitch-text block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-fuchsia-600 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
+            MULTIVERSE
+          </span>
+          <span class="block text-yellow-400 -skew-x-6 text-5xl md:text-7xl font-sans mt-2">
+            INTERFACES
+          </span>
+        </h1>
+
+        <p class="mt-6 text-xl text-cyan-100 max-w-xl font-semibold leading-relaxed border-l-4 border-pink-500 pl-4 bg-purple-950/40 py-2">
+          I build high-impact, chaotic web applications that shatter dimensional barriers. Merging bleeding-edge frontend mechanics with heavy graphic distortion vectors.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="#portals" class="px-8 py-4 bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white font-black uppercase tracking-wider text-lg border-4 border-black hover:scale-105 transition-all shadow-[6px_6px_0px_rgba(0,240,255,1)] hover:shadow-none">
+            EXPLORE THE WEB
+          </a>
+          <a href="#signal" class="px-8 py-4 bg-transparent text-cyan-400 font-black uppercase tracking-wider text-lg border-4 border-cyan-400 hover:bg-cyan-400 hover:text-black transition-all shadow-[6px_6px_0px_rgba(255,0,127,1)] hover:shadow-none">
+            INJECT SIGNAL
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Abstract Web Frame / Avatar Dynamic -->
+      <div class="lg:col-span-4 relative mt-12 lg:mt-0">
+        <div class="floating-container relative">
+          <!-- Back chaotic offset box -->
+          <div class="absolute inset-0 bg-pink-500 rounded-lg transform translate-x-3 translate-y-3 skew-x-3 skew-y-3 border-4 border-black"></div>
+          
+          <!-- Middle cyan offset box -->
+          <div class="absolute inset-0 bg-cyan-400 rounded-lg transform -translate-x-3 -translate-y-3 -skew-x-3 -skew-y-3 border-4 border-black"></div>
+          
+          <!-- Main Content Box -->
+          <div class="relative bg-black border-4 border-white p-6 rounded-lg shadow-2xl z-20 overflow-hidden">
+            <!-- Spider Eye Graphic / Vector lines -->
+            <div class="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+              <svg viewBox="0 0 100 100" class="stroke-white fill-none stroke-[2]">
+                <path d="M0,0 Q50,100 100,100 M0,0 Q100,50 100,100 M0,0 L100,100" />
+                <circle cx="50" cy="50" r="30" />
+              </svg>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+              <span class="text-xs font-mono text-cyan-400 tracking-wider">⚡ STATS // ENGAGED</span>
+              <div class="w-3 h-3 rounded-full bg-pink-500 animate-ping"></div>
+            </div>
+
+            <!-- Glitched Profile placeholder/graphic -->
+            <div class="bg-gradient-to-br from-fuchsia-950 via-purple-900 to-black h-64 w-full relative flex items-center justify-center border-2 border-pink-500/50 clip-skew-left overflow-hidden">
+              <div class="absolute inset-0 bg-cover bg-center mix-blend-color-dodge opacity-60" style="background-image: url('https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=600&q=80')"></div>
+              
+              <!-- Glitch overlay element -->
+              <div class="absolute inset-0 flex flex-col justify-between p-4">
+                <div class="bg-black/80 px-2 py-1 text-[10px] font-mono text-yellow-300 self-start border border-yellow-300">
+                  SYSTEM STATUS: CRITICAL
+                </div>
+                <div class="flex justify-between items-end">
+                  <div class="font-black text-white text-3xl leading-none tracking-tight">MILES G.</div>
+                  <div class="text-right text-[10px] font-mono text-cyan-400">COORDINATES:<br>40.7128° N, 74.0060° W</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 space-y-3 font-mono text-sm text-gray-300">
+              <div class="flex justify-between border-b border-gray-800 pb-1">
+                <span class="text-pink-500">CODING RADAR:</span>
+                <span class="font-bold text-white">OVERLOADED</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-800 pb-1">
+                <span class="text-cyan-400">COFFEE RATIO:</span>
+                <span class="font-bold text-white">99.8%</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-yellow-400">WEB-STABILITY:</span>
+                <span class="font-bold text-red-500 animate-pulse">COLLAPSING</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pop-out badge -->
+        <div class="absolute -bottom-6 -right-6 bg-yellow-400 text-black border-4 border-black p-4 font-black tracking-tighter text-xl uppercase rotate-12 z-30 shadow-[4px_4px_0px_0px_rgba(255,0,127,1)]">
+          THWIP!
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- INTERACTIVE ANOMALY MARQUEE -->
+  <div class="w-full bg-black py-4 border-y-4 border-pink-500 overflow-hidden relative z-20 my-24 rotate-1">
+    <div class="whitespace-nowrap flex gap-8 text-2xl font-black tracking-widest text-cyan-400 uppercase select-none animate-pulse">
+      <span>• EARTH-1610 DEPLOYED • MULTIVERSE WEBSOCKETS • REACTIVE SHIELDING • CHROMATIC REDIRECTS • DIMENSION KEY: ONLINE • EARTH-1610 DEPLOYED • MULTIVERSE WEBSOCKETS • REACTIVE SHIELDING • CHROMATIC REDIRECTS • DIMENSION KEY: ONLINE</span>
+    </div>
+  </div>
+
+  <!-- SECTION: ABOUT (THE ANOMALY) -->
+  <section id="about" class="max-w-7xl mx-auto px-4 my-20 relative z-10 scroll-mt-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Massive visual frame -->
+      <div class="lg:col-span-5 relative">
+        <div class="clip-skew-right bg-gradient-to-tr from-cyan-500 via-purple-600 to-pink-500 p-2 border-4 border-black shadow-[10px_10px_0px_0px_rgba(255,242,0,1)]">
+          <div class="bg-black p-6">
+            <h3 class="text-3xl font-black text-yellow-400 mb-4 uppercase italic tracking-tighter">// CLASSIFIED_FILE</h3>
+            <p class="font-mono text-sm leading-relaxed text-gray-300">
+              "They said I didn't fit the blueprint. That my architecture was too chaotic, my colors too loud. But dimensions aren't built on grids. They're built on impact."
+            </p>
+            <div class="mt-6 border-4 border-cyan-400 p-4 bg-slate-950">
+              <div class="text-xs font-mono text-cyan-400 uppercase mb-2">INTEGRATION MATRIX //</div>
+              <div class="space-y-2">
+                <div class="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-pink-500 w-[95%]"></div>
+                </div>
+                <div class="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-400 w-[88%]"></div>
+                </div>
+                <div class="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-yellow-400 w-[90%]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Text content -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <div class="bg-pink-500 text-black inline-block px-3 py-1 font-black uppercase text-xs tracking-wider mb-4 self-start">
+          THE DESIGN MATRIX
+        </div>
+        <h2 class="text-5xl font-black text-white uppercase tracking-tighter mb-6">
+          I BEND CSS SO REALITIES DON'T <span class="text-cyan-400 glitch-text inline-block">BREAK.</span>
+        </h2>
+        <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
+          <p>
+            Operating from the intersections of UI/UX development and raw comic book expressionism. I reject boring minimal layouts. Your digital interface deserves weight, motion, chromatic aberration, and absolute attitude.
+          </p>
+          <p class="font-mono text-sm text-cyan-300 bg-purple-950/50 p-4 border-l-2 border-cyan-400">
+            Current coordinates: Navigating the modern web stack using Next.js, Tailwind CSS, WebGL/Three.js, and extreme CSS custom properties that break standard rendering rules.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTALS SECTION (PROJECTS) -->
+  <section id="portals" class="max-w-7xl mx-auto px-4 my-32 scroll-mt-20">
+    <div class="text-center mb-16 relative">
+      <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase inline-block relative">
+        DIMENSIONAL <span class="text-pink-500 block md:inline">PORTALS</span>
+        <div class="absolute -bottom-2 left-0 right-0 h-2 bg-cyan-400 -skew-x-12"></div>
+      </h2>
+      <p class="text-cyan-200 mt-4 font-mono text-sm uppercase tracking-widest">ACTIVE PROJECTS SPINNING IN THE MULTIVERSE</p>
+    </div>
+
+    <!-- The Chaotic Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-pink-500 rounded-lg transform group-hover:skew-x-3 group-hover:skew-y-3 transition-transform duration-200 border-4 border-black"></div>
+        <div class="relative bg-black p-6 rounded-lg border-4 border-white transition-all duration-200 transform group-hover:-translate-y-2 group-hover:-translate-x-1 z-10 shadow-[8px_8px_0px_rgba(0,240,255,1)]">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-xs font-mono text-yellow-300 bg-yellow-950/80 px-2 py-1 border border-yellow-300">EARTH-928</span>
+            <span class="text-cyan-400 text-xs font-mono">// PORTAL_01</span>
+          </div>
+          <h3 class="text-2xl font-black text-white uppercase group-hover:text-pink-500 transition-colors">ALCHEMAX_SECURE_BYPASS</h3>
+          <p class="text-gray-400 mt-2 font-mono text-xs">
+            High-velocity React terminal mimicking security systems in Spider-Man 2099's reality. Intercepts JSON structures with extreme prejudice.
+          </p>
+          <div class="mt-6 flex gap-2">
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-pink-400 font-mono">REACT</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-cyan-300 font-mono">NEXTJS</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-yellow-400 font-mono">TAILWIND</span>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
+            <a href="#" class="text-sm font-black text-cyan-400 hover:text-pink-500 transition-colors uppercase flex items-center gap-1">
+              BREACH PORTAL <span>&rarr;</span>
+            </a>
+            <span class="text-[10px] font-mono text-red-500 animate-pulse">ONLINE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative group md:top-6">
+        <div class="absolute inset-0 bg-cyan-400 rounded-lg transform group-hover:-skew-x-3 group-hover:-skew-y-3 transition-transform duration-200 border-4 border-black"></div>
+        <div class="relative bg-black p-6 rounded-lg border-4 border-white transition-all duration-200 transform group-hover:-translate-y-2 group-hover:translate-x-1 z-10 shadow-[8px_8px_0px_rgba(255,0,127,1)]">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-xs font-mono text-pink-400 bg-pink-950/80 px-2 py-1 border border-pink-500">EARTH-65</span>
+            <span class="text-yellow-400 text-xs font-mono">// PORTAL_02</span>
+          </div>
+          <h3 class="text-2xl font-black text-white uppercase group-hover:text-cyan-400 transition-colors">SPIDR_WEB_SYNAPSE</h3>
+          <p class="text-gray-400 mt-2 font-mono text-xs">
+            Websocket-driven multi-node client linking canvas particles into physical structures that swing reactively upon screen-shake triggers.
+          </p>
+          <div class="mt-6 flex gap-2">
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-pink-400 font-mono">THREEJS</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-cyan-300 font-mono">WEBSOCKETS</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-yellow-400 font-mono">GSAP</span>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
+            <a href="#" class="text-sm font-black text-cyan-400 hover:text-pink-500 transition-colors uppercase flex items-center gap-1">
+              BREACH PORTAL <span>&rarr;</span>
+            </a>
+            <span class="text-[10px] font-mono text-yellow-400">SYNCING</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-yellow-400 rounded-lg transform group-hover:skew-x-3 group-hover:skew-y-3 transition-transform duration-200 border-4 border-black"></div>
+        <div class="relative bg-black p-6 rounded-lg border-4 border-white transition-all duration-200 transform group-hover:-translate-y-2 group-hover:-translate-x-1 z-10 shadow-[8px_8px_0px_rgba(0,240,255,1)]">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-1 border border-cyan-500">EARTH-13122</span>
+            <span class="text-pink-500 text-xs font-mono">// PORTAL_03</span>
+          </div>
+          <h3 class="text-2xl font-black text-white uppercase group-hover:text-yellow-400 transition-colors">THE_GOOBER_KEY</h3>
+          <p class="text-gray-400 mt-2 font-mono text-xs">
+            Interactive, highly unstable visual dimension selector tool built with canvas rasterization effects and custom high-contrast filters.
+          </p>
+          <div class="mt-6 flex gap-2">
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-pink-400 font-mono">HTML5 CANVAS</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-cyan-300 font-mono">SHADERS</span>
+            <span class="px-2 py-1 bg-purple-950 border border-purple-800 text-[10px] text-yellow-400 font-mono">GLSL</span>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center">
+            <a href="#" class="text-sm font-black text-cyan-400 hover:text-pink-500 transition-colors uppercase flex items-center gap-1">
+              BREACH PORTAL <span>&rarr;</span>
+            </a>
+            <span class="text-[10px] font-mono text-red-500 animate-pulse">WARNING</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GLITCH LOG SECTION -->
+  <section id="glitch-log" class="max-w-7xl mx-auto px-4 my-32 scroll-mt-20">
+    <div class="relative bg-black border-4 border-cyan-400 p-8 rounded-lg shadow-2xl overflow-hidden clip-skew-left">
+      <div class="absolute -top-10 -right-10 w-44 h-44 bg-pink-500 opacity-20 rounded-full blur-3xl"></div>
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between border-b-4 border-cyan-400 pb-4 mb-6">
+        <div>
+          <span class="text-xs font-mono text-pink-500 uppercase tracking-widest">// DEPLOYMENT INTERCEPTS</span>
+          <h2 class="text-4xl font-black tracking-tight text-white uppercase mt-1">GLITCH LOG: STABLE</h2>
+        </div>
+        <div class="bg-cyan-400 text-black font-black px-4 py-2 uppercase tracking-tighter mt-4 md:mt-0 text-sm italic">
+          SECURE CONNECTION: DETECTED
+        </div>
+      </div>
+
+      <div class="space-y-6 font-mono text-sm text-gray-300">
+        <div class="p-4 bg-slate-950/80 border-l-4 border-pink-500">
+          <span class="text-yellow-400 font-bold">[V1.4.2]</span> - Resolved temporal layout shift in Earth-65 components. CSS properties now hold together when gravity vectors are inverted.
+        </div>
+        <div class="p-4 bg-slate-950/80 border-l-4 border-cyan-400">
+          <span class="text-pink-500 font-bold">[V1.2.0]</span> - Merged Next.js API structures with dynamic WebGL overlays. Interactive load peaks stabilized across standard screen portals.
+        </div>
+        <div class="p-4 bg-slate-950/80 border-l-4 border-yellow-400">
+          <span class="text-cyan-400 font-bold">[V1.0.0]</span> - Dimension Key online. Initial breach of custom SVG filters, allowing authentic chromatic aberration effects directly inside DOM containers.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT: BREACH ZONE -->
+  <section id="signal" class="max-w-5xl mx-auto px-4 my-32 relative z-10 scroll-mt-20">
+    <div class="relative">
+      
+      <!-- Offset chaotic backing panels -->
+      <div class="absolute inset-0 bg-yellow-400 transform rotate-2 translate-y-3 translate-x-1 border-4 border-black"></div>
+      <div class="absolute inset-0 bg-pink-500 transform -rotate-1 -translate-y-2 -translate-x-3 border-4 border-black"></div>
+      
+      <!-- Main panel content -->
+      <div class="relative bg-black border-4 border-white p-8 md:p-12 z-10">
+        <div class="absolute top-2 right-4 text-xs font-mono text-gray-500">// SEND PORTAL PROTOCOL</div>
+        
+        <h2 class="text-4xl md:text-5xl font-black text-center text-white uppercase tracking-tighter mb-4">
+          INJECT YOUR <span class="text-cyan-400 glitch-text inline-block">SIGNAL</span> ACROSS THE WEB
+        </h2>
+        <p class="text-center text-gray-300 max-w-lg mx-auto mb-10 text-sm md:text-base">
+          Got a project that needs to rip through realities? Submit your parameters below to establish a stable web connection.
+        </p>
+
+        <!-- Dynamic chaotic form fields -->
+        <form class="space-y-6 max-w-2xl mx-auto" onsubmit="event.preventDefault(); alert('Signal Transmitted Across the Web!');">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative">
+              <label class="block text-xs font-mono uppercase text-pink-400 mb-2">// CODENAME</label>
+              <input type="text" placeholder="e.g. SPIDER-PUNK" class="w-full bg-slate-950 border-2 border-cyan-400 p-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-pink-500 transition-colors focus:ring-1 focus:ring-pink-500">
+            </div>
+            <div class="relative">
+              <label class="block text-xs font-mono uppercase text-pink-400 mb-2">// DIMENSIONAL ORIGIN</label>
+              <input type="text" placeholder="e.g. EARTH-1610" class="w-full bg-slate-950 border-2 border-cyan-400 p-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-pink-500 transition-colors focus:ring-1 focus:ring-pink-500">
+            </div>
+          </div>
+
+          <div class="relative">
+            <label class="block text-xs font-mono uppercase text-pink-400 mb-2">// TRANSMISSION BODY</label>
+            <textarea rows="4" placeholder="Brief the mission..." class="w-full bg-slate-950 border-2 border-cyan-400 p-3 text-white font-mono placeholder-gray-600 focus:outline-none focus:border-pink-500 transition-colors focus:ring-1 focus:ring-pink-500"></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="w-full md:w-auto px-12 py-5 bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white font-black uppercase text-lg border-4 border-black hover:bg-cyan-400 hover:text-black transition-all shadow-[6px_6px_0px_rgba(0,240,255,1)] hover:shadow-none">
+              LAUNCH DIMENSION CONNECTOR
+            </button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t-4 border-pink-500 bg-black py-12 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <!-- Brand / Glitch Text -->
+      <div class="text-center md:text-left">
+        <div class="text-xl font-black text-white italic uppercase tracking-tighter">
+          PETER PARKER <span class="text-cyan-400">// SPIDER-V PORTFOLIO</span>
+        </div>
+        <p class="text-xs font-mono text-gray-500 mt-1">
+          &copy; EARTH-1610 DEPLOYMENT. NO RIGHTS RESERVED. BEND THE CODE.
+        </p>
+      </div>
+
+      <!-- Quick Social Breaches -->
+      <div class="flex gap-4">
+        <a href="#" class="w-10 h-10 bg-cyan-400 text-black flex items-center justify-center font-black border-2 border-black hover:bg-pink-500 hover:text-white transition-all transform hover:-rotate-12">
+          GH
+        </a>
+        <a href="#" class="w-10 h-10 bg-pink-500 text-black flex items-center justify-center font-black border-2 border-black hover:bg-yellow-400 hover:text-black transition-all transform hover:rotate-12">
+          TW
+        </a>
+        <a href="#" class="w-10 h-10 bg-yellow-400 text-black flex items-center justify-center font-black border-2 border-black hover:bg-cyan-400 hover:text-black transition-all transform hover:-rotate-6">
+          LN
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+        </body>
+        </html>
+      
